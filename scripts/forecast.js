@@ -1,6 +1,5 @@
 'use strict';
-require('dotenv').config();
-// import 'dotenv/config';
+
 const key = process.env.API_KEY;
 
 // get city
