@@ -1,7 +1,7 @@
 'use strict';
-
-const key = 'Pdex0Ac7aoN0LLXAcaYM0O00Vm7BRKBx';
-// const key = process.env.API_KEY;
+require('dotenv').config();
+// import 'dotenv/config';
+const key = process.env.API_KEY;
 
 // get city
 async function getCity(city) {
