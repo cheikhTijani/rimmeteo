@@ -1,5 +1,101 @@
-'use strict';
+import * as dotenv from 'dotenv';
+dotenv.config();
+const key = process.env.API_KEY;
+// city data
+const cityData = [
+    {
+        name: 'Akjoujt',
+        key: '233266',
+    },
+    {
+        name: 'Aleg',
+        key: '231862',
+    },
+    {
+        name: 'Atar',
+        key: '231709',
+    },
+    {
+        name: 'Ayoun El Atrous',
+        key: '233265',
+    },
+    {
+        name: 'Bogué',
+        key: '1-231863_1_AL',
+    },
+    {
+        name: 'Boutilimit',
+        key: '236224',
+    },
+    {
+        name: 'Kaédi',
+        key: '1-357371_1_AL',
+    },
+    {
+        name: 'Kiffa',
+        key: '356915',
+    },
+    {
+        name: 'Néma',
+        key: '1-358233_1_AL',
+    },
+    {
+        name: 'Nouadhibou',
+        key: '357178',
+    },
+    {
+        name: 'Nouakchott',
+        key: '234442',
+    },
+    {
+        name: 'Rosso',
+        key: '361380',
+    },
+    {
+        name: 'Tidjikja',
+        key: '235977',
+    },
+    {
+        name: 'Zouérat',
+        key: '1-361363_1_AL',
+    },
 
+];
+// forecast functions
+// get city
+async function getCity(city) {
+
+    const baseUrl = 'http://dataservice.accuweather.com/locations/v1/cities/search';
+    const query = `?apikey=${key}&q=${city}`;
+
+    const response = await fetch(baseUrl + query);
+
+    if (response.ok !== true) {
+        throw new Error('Could not fetch data');
+    }
+
+    const data = await response.json();
+
+    return data[0];
+};
+
+// get weather
+async function getWeather(cityKey) {
+
+    const baseUrl = 'http://dataservice.accuweather.com/currentconditions/v1/';
+    const query = `${cityKey}?apikey=${key}&language=fr-Fr&details=true`;
+
+    const response = await fetch(baseUrl + query);
+
+    if (response.ok !== true) {
+        throw new Error('Could not fetch data');
+    }
+
+    const data = await response.json();
+
+    return data[0];
+};
+// app logic
 const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
 const details = document.querySelector('.details');
@@ -75,13 +171,13 @@ const updateUI = function (data) {
                     </div>`;
 
     // icon
-    const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+    const iconSrc = `./img/icons/${weather.WeatherIcon}.svg`;
     icon.setAttribute('src', iconSrc);
     icon.setAttribute('alt', weather.WeatherText);
     icon.setAttribute('title', weather.WeatherText);
 
     // city img
-    const cityImgSrc = `img/cities/${cityName.slice(0, 5)}.jpg`;
+    const cityImgSrc = `./img/cities/${cityName.slice(0, 5)}.jpg`;
     cityImg.setAttribute('src', cityImgSrc);
     cityImg.setAttribute('alt', cityName);
 
