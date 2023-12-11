@@ -2,10 +2,11 @@
   "name": "weather",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build src/index.html"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,11 @@
     "events": "^3.3.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.10.3",
+    "parcel-reporter-static-files-copy": "^1.5.3",
     "path-browserify": "^1.0.1",
     "stream-browserify": "^3.0.0"
+  },
+  "staticFiles": {
+    "staticOutPath": "img"
   }
 }

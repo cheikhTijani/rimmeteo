@@ -171,13 +171,13 @@ const updateUI = function (data) {
                     </div>`;
 
     // icon
-    const iconSrc = `./img/icons/${weather.WeatherIcon}.svg`;
+    const iconSrc = `./img/${weather.WeatherIcon}.svg`;
     icon.setAttribute('src', iconSrc);
     icon.setAttribute('alt', weather.WeatherText);
     icon.setAttribute('title', weather.WeatherText);
 
     // city img
-    const cityImgSrc = `./img/cities/${cityName.slice(0, 5)}.jpg`;
+    const cityImgSrc = `./img/${cityName.slice(0, 5)}.jpg`;
     cityImg.setAttribute('src', cityImgSrc);
     cityImg.setAttribute('alt', cityName);
 
